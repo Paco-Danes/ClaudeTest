@@ -289,6 +289,8 @@
     <header>
         <h1>Model Response Comparison: Opus KG-mcp vs. Opus WebSearch</h1>
         <p>Domain: Neurodevelopmental Biology &nbsp;·&nbsp; Format: Explanation + Direct Response</p>
+        <p>The KG was assembled by running our extraction pipeline over 10 recent papers (relevant to the selected
+            questions) plus a backbone graph built from a standard neurodevelopmental dataset. Size: 11k nodes, 50k edges</p>
     </header>
 
     <div class="legend">
@@ -536,7 +538,7 @@ Robot noise → MG → AUDp pyramidal neurons
                     <div class="reasoning-body collapsed">
                         Here's the concise picture from the key single-cell RNA-seq studies:<br>
 
-                        <b>Bhaduri et al. (2020, Cell Stem Cell)</b> identified an
+                        <b>Bhaduri et al. (2020, Cell Stem Cell)</b> — the paper you're already aware of — identified an
                         invasive glioblastoma stem cell population similar to outer radial glia (oRG), a fetal cell type
                         that expands the stem cell niche in normal human cortex.<br><br>
 
@@ -580,10 +582,173 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
         </div>
     </div>
-
     <!-- QUESTION 3 -->
     <div class="question-block">
         <div class="question-label">Question 3</div>
+        <div class="question-text">Which anatomical division in the adult mouse brain is the most heterogenous in terms
+            of
+            cell type composition?</div>
+        <div class="comparison-grid">
+            <div class="col-header kg">Opus KG-mcp</div>
+            <div class="col-header plain">Opus WebSearch</div>
+
+            <div class="cell kg">
+                <div class="cell-section-label">Explanation</div>
+                <div class="cell-content">
+                    <div class="reasoning-body collapsed">
+                        <ul>
+                            <li>It hosts <strong>719 distinct cell type clusters</strong> (second only to Midbrain in
+                                raw count)</li>
+                            <li>It spans <strong>16 Classes</strong> and <strong>8 Neighborhoods</strong> - the highest
+                                diversity at
+                                both coarse levels among all regions</li>
+                        </ul>
+                        <p>While the <strong>Midbrain (MB)</strong> has slightly more clusters (746), its diversity
+                            collapses into
+                            only 5 Neighborhoods compared to the Hypothalamus&#39;s 8, meaning many of those Midbrain
+                            clusters are
+                            variations within fewer broad cell categories.</p>
+                        <p>The Hypothalamus&#39;s exceptional heterogeneity reflects its role as a hub integrating
+                            endocrine,
+                            autonomic, and behavioral functions - requiring a uniquely diverse repertoire of neuronal
+                            and
+                            non-neuronal cell types.</p>
+
+                    </div>
+                    <span class="show-toggle">show more</span>
+                </div>
+            </div>
+            <div class="cell plain">
+                <div class="cell-section-label">Explanation</div>
+                <div class="cell-content">
+                    <div class="reasoning-body collapsed">
+                        <p>Based on large-scale single-cell and spatial transcriptomic atlases (Allen Brain Cell Atlas,
+                            BICCN), the
+                            <strong>cerebral cortex</strong> - and more broadly the
+                            <strong>telencephalon/cerebrum</strong> -
+                            harbors the greatest cell-type heterogeneity in the adult mouse brain. Here&#39;s the
+                            reasoning:
+                        </p>
+                        <h3>Why the cerebral cortex wins in absolute diversity</h3>
+                        <ul>
+                            <li><strong>Glutamatergic neurons</strong>: Dozens of layer-specific (L2/3, L4, L5, L6) and
+                                area-specific
+                                (e.g., visual vs. motor vs. prefrontal) excitatory subtypes, creating a combinatorial
+                                explosion of
+                                identities across the cortical sheet.</li>
+                            <li><strong>GABAergic interneurons</strong>: All major cardinal classes -
+                                <strong>Pvalb</strong>,
+                                <strong>Sst</strong>, <strong>Vip</strong>, <strong>Lamp5</strong>,
+                                <strong>Sncg</strong> - each with
+                                multiple molecularly distinct subtypes, many shared across areas.
+                            </li>
+                            <li><strong>Glia</strong>: Full complement of astrocytes, oligodendrocytes, OPCs, and
+                                microglia, with
+                                regional specialization.</li>
+                            <li><strong>Hippocampal formation</strong> adds further unique types (e.g., CA1/CA3
+                                pyramidal subtypes,
+                                dentate granule cells).</li>
+                        </ul>
+                        <h3>Notable runner-up: The Hypothalamus</h3>
+                        <p>The <strong>hypothalamus</strong> deserves special mention. Per unit volume, it may be the
+                            <em>most
+                                diverse</em> region, with hundreds of neuron types defined by combinatorial expression
+                            of:
+                        </p>
+                        <ul>
+                            <li>Neuropeptides (Avp, Oxt, Crh, Agrp, Pomc, Hcrt, etc.)</li>
+                            <li>Transcription factors (Nr5a1, Sim1, Otp, etc.)</li>
+                            <li>Mixed neurotransmitter identities (glutamatergic, GABAergic, and co-releasing)</li>
+                        </ul>
+                        <h3>Summary</h3>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Division</th>
+                                    <th>Absolute # of cell types</th>
+                                    <th>Diversity per volume</th>
+                                    <th>Key driver</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><strong>Cerebral cortex</strong></td>
+                                    <td><strong>Highest</strong></td>
+                                    <td>High</td>
+                                    <td>Layer ├ù area ├ù class combinatorics</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>Hypothalamus</strong></td>
+                                    <td>Very high</td>
+                                    <td><strong>Highest</strong></td>
+                                    <td>Neuropeptide/TF combinatorics</td>
+                                </tr>
+                                <tr>
+                                    <td>Cerebral nuclei</td>
+                                    <td>Moderate</td>
+                                    <td>Moderate</td>
+                                    <td>Striatal/pallidal specialization</td>
+                                </tr>
+                                <tr>
+                                    <td>Thalamus</td>
+                                    <td>Moderate</td>
+                                    <td>Moderate</td>
+                                    <td>Nucleus-specific types</td>
+                                </tr>
+                                <tr>
+                                    <td>Midbrain/Hindbrain</td>
+                                    <td>Moderate</td>
+                                    <td>Moderate</td>
+                                    <td>Neuromodulatory diversity</td>
+                                </tr>
+                                <tr>
+                                    <td>Cerebellum</td>
+                                    <td>Low</td>
+                                    <td>Low</td>
+                                    <td>Dominated by granule cells</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <b>Bottom line</b>: The <b>cerebral cortex (isocortex)</b> is the most heterogeneous in total
+                        cell-type composition, driven by the intersection of laminar, areal, and interneuron diversity.
+                        If the
+                        question is about <em>neuronal subtype density</em>, the <b>hypothalamus</b> is a strong
+                        contender.
+
+                    </div>
+                    <span class="show-toggle">show more</span>
+                </div>
+            </div>
+
+            <div class="divider-row"></div>
+
+            <div class="cell kg">
+                <div class="cell-section-label">Answer</div>
+                <div class="cell-content">
+                    The <b>Hypothalamus (HY)</b> stands out as the most heterogeneous anatomical division in terms of
+                    cell type
+                    composition.
+                </div>
+            </div>
+            <div class="cell plain">
+                <div class="cell-section-label">Answer</div>
+                <div class="cell-content">Most Heterogeneous Anatomical Division: <b>The Cerebral Cortex</b> (Isocortex
+                    +
+                    Allocortex).
+                </div>
+            </div>
+
+            <div class="notes-row">
+                <div class="notes-label">Observations</div>
+                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Opus-KG cited both
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- QUESTION 4 -->
+    <div class="question-block">
+        <div class="question-label">Question 4</div>
         <div class="question-text">How many electrophysiologically distinct populations (by populations I mean,
             typically
             exhibiting different neuropeptides) would light up if I used an enhancer targeting Lamp5?
@@ -826,170 +991,6 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="notes-label">Observations</div>
                 <div class="notes-content">Ground truth: Lamp5 CGE-derived and Lamp5 Lhx6 MGE-derived populations. Note
                     how KG-claude retrieves granular information resulting in more accurate and specific answer. </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- QUESTION 4 -->
-    <div class="question-block">
-        <div class="question-label">Question 4</div>
-        <div class="question-text">Which anatomical division in the adult mouse brain is the most heterogenous in terms
-            of
-            cell type composition?</div>
-        <div class="comparison-grid">
-            <div class="col-header kg">Opus KG-mcp</div>
-            <div class="col-header plain">Opus WebSearch</div>
-
-            <div class="cell kg">
-                <div class="cell-section-label">Explanation</div>
-                <div class="cell-content">
-                    <div class="reasoning-body collapsed">
-                        <ul>
-                            <li>It hosts <strong>719 distinct cell type clusters</strong> (second only to Midbrain in
-                                raw count)</li>
-                            <li>It spans <strong>16 Classes</strong> and <strong>8 Neighborhoods</strong> - the highest
-                                diversity at
-                                both coarse levels among all regions</li>
-                        </ul>
-                        <p>While the <strong>Midbrain (MB)</strong> has slightly more clusters (746), its diversity
-                            collapses into
-                            only 5 Neighborhoods compared to the Hypothalamus&#39;s 8, meaning many of those Midbrain
-                            clusters are
-                            variations within fewer broad cell categories.</p>
-                        <p>The Hypothalamus&#39;s exceptional heterogeneity reflects its role as a hub integrating
-                            endocrine,
-                            autonomic, and behavioral functions - requiring a uniquely diverse repertoire of neuronal
-                            and
-                            non-neuronal cell types.</p>
-
-                    </div>
-                    <span class="show-toggle">show more</span>
-                </div>
-            </div>
-            <div class="cell plain">
-                <div class="cell-section-label">Explanation</div>
-                <div class="cell-content">
-                    <div class="reasoning-body collapsed">
-                        <p>Based on large-scale single-cell and spatial transcriptomic atlases (Allen Brain Cell Atlas,
-                            BICCN), the
-                            <strong>cerebral cortex</strong> - and more broadly the
-                            <strong>telencephalon/cerebrum</strong> -
-                            harbors the greatest cell-type heterogeneity in the adult mouse brain. Here&#39;s the
-                            reasoning:
-                        </p>
-                        <h3>Why the cerebral cortex wins in absolute diversity</h3>
-                        <ul>
-                            <li><strong>Glutamatergic neurons</strong>: Dozens of layer-specific (L2/3, L4, L5, L6) and
-                                area-specific
-                                (e.g., visual vs. motor vs. prefrontal) excitatory subtypes, creating a combinatorial
-                                explosion of
-                                identities across the cortical sheet.</li>
-                            <li><strong>GABAergic interneurons</strong>: All major cardinal classes -
-                                <strong>Pvalb</strong>,
-                                <strong>Sst</strong>, <strong>Vip</strong>, <strong>Lamp5</strong>,
-                                <strong>Sncg</strong> - each with
-                                multiple molecularly distinct subtypes, many shared across areas.
-                            </li>
-                            <li><strong>Glia</strong>: Full complement of astrocytes, oligodendrocytes, OPCs, and
-                                microglia, with
-                                regional specialization.</li>
-                            <li><strong>Hippocampal formation</strong> adds further unique types (e.g., CA1/CA3
-                                pyramidal subtypes,
-                                dentate granule cells).</li>
-                        </ul>
-                        <h3>Notable runner-up: The Hypothalamus</h3>
-                        <p>The <strong>hypothalamus</strong> deserves special mention. Per unit volume, it may be the
-                            <em>most
-                                diverse</em> region, with hundreds of neuron types defined by combinatorial expression
-                            of:
-                        </p>
-                        <ul>
-                            <li>Neuropeptides (Avp, Oxt, Crh, Agrp, Pomc, Hcrt, etc.)</li>
-                            <li>Transcription factors (Nr5a1, Sim1, Otp, etc.)</li>
-                            <li>Mixed neurotransmitter identities (glutamatergic, GABAergic, and co-releasing)</li>
-                        </ul>
-                        <h3>Summary</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Division</th>
-                                    <th>Absolute # of cell types</th>
-                                    <th>Diversity per volume</th>
-                                    <th>Key driver</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Cerebral cortex</strong></td>
-                                    <td><strong>Highest</strong></td>
-                                    <td>High</td>
-                                    <td>Layer ├ù area ├ù class combinatorics</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Hypothalamus</strong></td>
-                                    <td>Very high</td>
-                                    <td><strong>Highest</strong></td>
-                                    <td>Neuropeptide/TF combinatorics</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebral nuclei</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Striatal/pallidal specialization</td>
-                                </tr>
-                                <tr>
-                                    <td>Thalamus</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Nucleus-specific types</td>
-                                </tr>
-                                <tr>
-                                    <td>Midbrain/Hindbrain</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Neuromodulatory diversity</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebellum</td>
-                                    <td>Low</td>
-                                    <td>Low</td>
-                                    <td>Dominated by granule cells</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <b>Bottom line</b>: The <b>cerebral cortex (isocortex)</b> is the most heterogeneous in total
-                        cell-type composition, driven by the intersection of laminar, areal, and interneuron diversity.
-                        If the
-                        question is about <em>neuronal subtype density</em>, the <b>hypothalamus</b> is a strong
-                        contender.
-
-                    </div>
-                    <span class="show-toggle">show more</span>
-                </div>
-            </div>
-
-            <div class="divider-row"></div>
-
-            <div class="cell kg">
-                <div class="cell-section-label">Answer</div>
-                <div class="cell-content">
-                    The <b>Hypothalamus (HY)</b> stands out as the most heterogeneous anatomical division in terms of
-                    cell type
-                    composition.
-                </div>
-            </div>
-            <div class="cell plain">
-                <div class="cell-section-label">Answer</div>
-                <div class="cell-content">Most Heterogeneous Anatomical Division: <b>The Cerebral Cortex</b> (Isocortex
-                    +
-                    Allocortex).
-                </div>
-            </div>
-
-            <div class="notes-row">
-                <div class="notes-label">Observations</div>
-                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Opus-KG cited both
-                </div>
             </div>
         </div>
     </div>
