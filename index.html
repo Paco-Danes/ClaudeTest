@@ -506,7 +506,8 @@ Robot noise → MG → AUDp pyramidal neurons
             <div class="notes-row">
                 <div class="notes-label">Observations</div>
                 <div class="notes-content">Ground Truth: Post-habituation inactivation of OFC suppresses SST neuron
-                    activity in primary auditory cortex (A1). Remarkably, Opus is using the graph connections to hypothesize a possible mechanism.</div>
+                    activity in primary auditory cortex (A1). Remarkably, Opus is using the graph connections to
+                    hypothesize a possible mechanism.</div>
             </div>
         </div>
     </div>
@@ -562,52 +563,53 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="cell-section-label">Explanation</div>
                 <div class="cell-content">
                     <div class="reasoning-body collapsed">
-                        <p>The answer is actually richer than a single cell type — here&#39;s what the research shows:
+                        <p>Great question — this is an active and important area of research. Let me search for the
+                            latest findings on this.This is a rich area of research. Here&#39;s what&#39;s been
+                            established:</p>
+                        <p>You&#39;re right that the oRG (outer radial glia) connection is well-known — that was the
+                            Bhaduri, Di Lullo, Kriegstein et al. 2020 paper in <em>Cell Stem Cell</em>, which showed
+                            that GBM contains an invasive GSC population similar to outer radial glia, a fetal cell type
+                            that expands the stem cell niche in normal human cortex. Those oRG-like cells even perform
+                            mitotic somal translocation, a behavior previously seen only in fetal development, and
+                            PTPRZ1 was shown to mediate both this translocation and glioblastoma invasion.</p>
+                        <p>But the broader and arguably more foundational finding is from <strong>Neftel et al.
+                                2019</strong> (<em>Cell</em>), which demonstrated that malignant cells in glioblastoma
+                            exist in four main cellular states that recapitulate distinct neural cell types and exhibit
+                            plasticity. Those four developmental states are:</p>
+                        <ol>
+                            <li><strong>NPC-like</strong> — neural progenitor cell-like (favored by CDK4 amplification)
+                            </li>
+                            <li><strong>OPC-like</strong> — oligodendrocyte progenitor cell-like (favored by PDGFRA
+                                amplification)</li>
+                            <li><strong>AC-like</strong> — astrocyte-like (favored by EGFR amplification)</li>
+                            <li><strong>MES-like</strong> — mesenchymal-like (favored by NF1 mutations)</li>
+                        </ol>
+                        <p>Additionally, <strong>Couturier et al. 2020</strong> (<em>Nature Communications</em>)
+                            compared GBM single-cell transcriptomes directly to the human fetal brain and found that
+                            IDH-wildtype glioblastoma is hierarchically organized into three cell lineages corresponding
+                            to all three normal neural lineages: astrocytic, neuronal, and oligodendrocytic. Critically,
+                            they found that this hierarchy is centered around glial progenitor-like cells (GPCs), which
+                            contain the majority of cycling cells and are often the originator of the other cell types.
                         </p>
-                        <p><strong>The Four Developmental Cellular States (Neftel et al., 2019, <em>Cell</em>)</strong>
-                        </p>
-                        <p>The landmark single-cell RNA-seq study by Neftel et al. showed that malignant cells in
-                            glioblastoma exist in four cellular states that recapitulate normal developmental cell
-                            types: neural progenitor-like (NPC-like), oligodendrocyte progenitor-like (OPC-like),
-                            astrocyte-like (AC-like), and mesenchymal-like (MES-like). Critically, these meta-modules
-                            mimic developmental cell types but with important distortions from normal programs. The
-                            AC-like state was most highly expressed by astrocytes but was also expressed in radial glia
-                            (RG) and contained RG markers such as HOPX.</p>
-                        <p>Each state is driven by specific genetic alterations: CDK4 amplification favors the NPC-like
-                            state, PDGFRA amplification favors OPC-like, EGFR amplification favors AC-like, and NF1 loss
-                            favors MES-like.</p>
-                        <p><strong>oRG-like Cells (Bhaduri et al., 2020, <em>Cell Stem Cell</em>)</strong></p>
-                        <p>As you noted, Bhaduri et al. identified an invasive glioma stem cell population similar to
-                            outer radial glia (oRG), a fetal cell type that expands the stem cell niche in normal human
-                            cortex. These oRG-like cells undergo mitotic somal translocation (MST), a behavior normally
-                            only seen during development, which promotes glioblastoma invasiveness. Because MST
-                            doesn&#39;t normally occur outside development, targeting it may be a viable therapeutic
-                            strategy. The surface marker <strong>PTPRZ1</strong> marks these cells.</p>
-                        <p><strong>Glial Progenitor Cells as the Hierarchy Hub (Couturier et al., 2020, <em>Nature
-                                    Communications</em>)</strong></p>
-                        <p>Couturier et al. performed scRNA-seq on over 53,000 adult GBM cells and 22,000 normal fetal
-                            brain cells and found a conserved neural tri-lineage cancer hierarchy centered around glial
-                            progenitor-like cells. This progenitor population contains the majority of the cancer&#39;s
-                            cycling cells and, using RNA velocity, is often the originator of the other cell types.</p>
-                        <p><strong>Therapeutic Implications</strong></p>
-                        <p>Given that you&#39;re designing a therapy, here are the key takeaways from this developmental
-                            framing:</p>
-                        <p>The high <strong>plasticity</strong> between states is a major challenge — a single GBM cell
-                            can generate all four states, and GBM cells exist in gradients of transcriptomic states
-                            rather than fixed identities. This means targeting a single state may allow escape through
-                            state transitions.</p>
-                        <p>Some promising angles include targeting PTPRZ1/MST to block oRG-mediated invasion, targeting
-                            the developmental signaling pathways that maintain the progenitor-like state (NOTCH, SHH,
-                            WNT), and exploiting the genetic driver–state associations (e.g., EGFR inhibition in
-                            AC-dominant tumors). Recent multi-omics work has also shown that AP-1 transcription factor
-                            activity is high in tumor core cells while BACH1 is higher at the infiltrative margin, and
-                            combined inhibition of AP-1 and BACH1 was more effective than either alone in mouse models.
-                        </p>
-                        <p>So the developmental cell types you&#39;re likely remembering are <strong>neural progenitor
-                                cells (NPCs)</strong> and <strong>oligodendrocyte precursor cells (OPCs)</strong> —
-                            along with oRG, these are the fetal/developmental populations whose programs GBM hijacks.
-                            Would you like me to dig deeper into any specific therapeutic angle?</p>
-
+                        <p>The Tabar lab also showed that adult GBMs harbor subpopulations of radial glia-like cells
+                            sharing the profiles of normal human fetal radial glia, residing in both quiescent and
+                            cycling states, and that IL-1β-mediated inflammation can trigger these dormant RG-like cells
+                            into active cycling.</p>
+                        <p><strong>For therapy design, the key implications are:</strong></p>
+                        <p>The developmental cell type you may be thinking of specifically is the <strong>glial
+                                progenitor cell (GPC)</strong> — these sit at the apex of the tumor hierarchy and are
+                            the proliferative engine. But the broader point is that GBM recapitulates the entire
+                            neurodevelopmental program, and the four Neftel states are all therapeutic targets. The
+                            plasticity between states is a major challenge: targeting one state can lead to tumor cells
+                            transitioning to another.</p>
+                        <p>Promising therapeutic angles coming from this developmental framing include targeting the
+                            PTPRZ1/PTN signaling axis (shared between oRG and GBM invasion), the NOTCH/SHH/WNT pathways
+                            that maintain radial glia-like stemness, and differentiation-forcing strategies that push
+                            cells out of the progenitor state. The genetic drivers (CDK4, EGFR, PDGFRA, NF1) that bias
+                            tumors toward specific developmental states could also inform patient-specific combination
+                            strategies.</p>
+                        <p>Would you like me to dig deeper into any of these specific developmental parallels or the
+                            therapeutic strategies being explored?</p>
                     </div>
                     <span class="show-toggle">show more</span>
                 </div>
@@ -623,15 +625,14 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
-                <div class="cell-content">the developmental cell types you're likely remembering are <b>neural
-                        progenitor cells (NPCs)</b> and <b>oligodendrocyte precursor cells (OPCs)</b> — along with oRG,
-                    these are the fetal/developmental populations whose programs GBM hijacks..</div>
+                <div class="cell-content">You're likely thinking of <b>glial progenitor cells (GPCs)</b> — the
+                    proliferative hub of the GBM hierarchy that recapitulates fetal brain development.</div>
             </div>
 
             <div class="notes-row">
                 <div class="notes-label">Observations</div>
                 <div class="notes-content">Ground Truth: tripotential intermediate neural progenitor cells (tri-IPCs),
-                    or at least, intermediate progenitors.
+                    or at least, intermediate progenitors, not generic radial glia.
                 </div>
             </div>
         </div>
@@ -1280,7 +1281,9 @@ Robot noise → MG → AUDp pyramidal neurons
 
             <div class="notes-row">
                 <div class="notes-label">Observations</div>
-                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Notably, we tested Opus with only it's prior knowledge and no tools enabled, resulting in a wrong answer (Cerebral Cortex). Both the KG and Web steered the model towards a more specific and grounded answer.
+                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Notably, we tested
+                    Opus with only it's prior knowledge and no tools enabled, resulting in a wrong answer (Cerebral
+                    Cortex). Both the KG and Web steered the model towards a more specific and grounded answer.
                 </div>
             </div>
         </div>
