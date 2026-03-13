@@ -106,12 +106,35 @@
             text-transform: uppercase;
             letter-spacing: 0.08em;
             border-bottom: 1px solid #ddd;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .col-header::before {
+            content: "";
+            width: 28px;
+            height: 28px;
+            background-image: url('claude-ai-icon.png');
+            background-size: 28px 28px;
+            background-position: center;
+            background-repeat: no-repeat;
+            flex: 0 0 28px;
         }
 
         .col-header.kg {
             background: #1a1a1a;
             color: #fff;
             border-right: 1px solid #ddd;
+        }
+
+        .col-header.kg::before {
+            width: 38px;
+            height: 28px;
+            background-image: url('claude-ai-icon.png'), url('graph-icon.png');
+            background-size: 28px 28px, 28px 28px;
+            background-position: left center, right center;
+            flex: 0 0 62px;
         }
 
         .col-header.plain {
@@ -290,7 +313,9 @@
         <h1>Model Response Comparison: Opus KG-mcp vs. Opus WebSearch</h1>
         <p>Domain: Neurodevelopmental Biology &nbsp;·&nbsp; Format: Explanation + Direct Response</p>
         <p>The KG was assembled by running our extraction pipeline over 10 recent papers (relevant to the selected
-            questions) plus a backbone graph built from a standard neurodevelopmental dataset. Size: 11k nodes, 50k edges</p>
+            questions) plus a backbone graph built from a standard neurodevelopmental dataset. No web access or other
+            tools. Size: 11k nodes, 50k
+            edges</p>
     </header>
 
     <div class="legend">
@@ -467,13 +492,15 @@ Robot noise → MG → AUDp pyramidal neurons
             <div class="cell kg">
                 <div class="cell-section-label">Answer</div>
                 <div class="cell-content">The brain area you're looking for is the orbitofrontal cortex <b>(OFC)</b>,
-                    which after associative learning changes its top-down modulation of Sst interneurons in the primary
-                    auditory cortex (AUDp).</div>
+                    which after associative learning changes its <b>top-down modulation of Sst</b> interneurons in the
+                    <b>primary
+                        auditory cortex</b> (AUDp).
+                </div>
             </div>
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
-                <div class="cell-content">Based on the literature, the strongest candidate is the posterior parietal
-                    cortex (PPC).</div>
+                <div class="cell-content">Based on the literature, the strongest candidate is the <b>posterior parietal
+                        cortex (PPC).</b></div>
             </div>
 
             <div class="notes-row">
@@ -488,8 +515,7 @@ Robot noise → MG → AUDp pyramidal neurons
     <div class="question-block">
         <div class="question-label">Question 2</div>
         <div class="question-text">"I remember that malignant glioblastoma has a gene expression profile similar to some
-            developmental cell type (not just oRG), what was that? Do your searches and reasoning and give me a short
-            answer.
+            developmental cell type (not just oRG), what was that? I need to know this to design a possible therapy.
         </div>
         <div class="comparison-grid">
             <div class="col-header kg">Opus KG-mcp</div>
@@ -536,26 +562,52 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="cell-section-label">Explanation</div>
                 <div class="cell-content">
                     <div class="reasoning-body collapsed">
-                        Here's the concise picture from the key single-cell RNA-seq studies:<br>
+                        <p>The answer is actually richer than a single cell type — here&#39;s what the research shows:
+                        </p>
+                        <p><strong>The Four Developmental Cellular States (Neftel et al., 2019, <em>Cell</em>)</strong>
+                        </p>
+                        <p>The landmark single-cell RNA-seq study by Neftel et al. showed that malignant cells in
+                            glioblastoma exist in four cellular states that recapitulate normal developmental cell
+                            types: neural progenitor-like (NPC-like), oligodendrocyte progenitor-like (OPC-like),
+                            astrocyte-like (AC-like), and mesenchymal-like (MES-like). Critically, these meta-modules
+                            mimic developmental cell types but with important distortions from normal programs. The
+                            AC-like state was most highly expressed by astrocytes but was also expressed in radial glia
+                            (RG) and contained RG markers such as HOPX.</p>
+                        <p>Each state is driven by specific genetic alterations: CDK4 amplification favors the NPC-like
+                            state, PDGFRA amplification favors OPC-like, EGFR amplification favors AC-like, and NF1 loss
+                            favors MES-like.</p>
+                        <p><strong>oRG-like Cells (Bhaduri et al., 2020, <em>Cell Stem Cell</em>)</strong></p>
+                        <p>As you noted, Bhaduri et al. identified an invasive glioma stem cell population similar to
+                            outer radial glia (oRG), a fetal cell type that expands the stem cell niche in normal human
+                            cortex. These oRG-like cells undergo mitotic somal translocation (MST), a behavior normally
+                            only seen during development, which promotes glioblastoma invasiveness. Because MST
+                            doesn&#39;t normally occur outside development, targeting it may be a viable therapeutic
+                            strategy. The surface marker <strong>PTPRZ1</strong> marks these cells.</p>
+                        <p><strong>Glial Progenitor Cells as the Hierarchy Hub (Couturier et al., 2020, <em>Nature
+                                    Communications</em>)</strong></p>
+                        <p>Couturier et al. performed scRNA-seq on over 53,000 adult GBM cells and 22,000 normal fetal
+                            brain cells and found a conserved neural tri-lineage cancer hierarchy centered around glial
+                            progenitor-like cells. This progenitor population contains the majority of the cancer&#39;s
+                            cycling cells and, using RNA velocity, is often the originator of the other cell types.</p>
+                        <p><strong>Therapeutic Implications</strong></p>
+                        <p>Given that you&#39;re designing a therapy, here are the key takeaways from this developmental
+                            framing:</p>
+                        <p>The high <strong>plasticity</strong> between states is a major challenge — a single GBM cell
+                            can generate all four states, and GBM cells exist in gradients of transcriptomic states
+                            rather than fixed identities. This means targeting a single state may allow escape through
+                            state transitions.</p>
+                        <p>Some promising angles include targeting PTPRZ1/MST to block oRG-mediated invasion, targeting
+                            the developmental signaling pathways that maintain the progenitor-like state (NOTCH, SHH,
+                            WNT), and exploiting the genetic driver–state associations (e.g., EGFR inhibition in
+                            AC-dominant tumors). Recent multi-omics work has also shown that AP-1 transcription factor
+                            activity is high in tumor core cells while BACH1 is higher at the infiltrative margin, and
+                            combined inhibition of AP-1 and BACH1 was more effective than either alone in mouse models.
+                        </p>
+                        <p>So the developmental cell types you&#39;re likely remembering are <strong>neural progenitor
+                                cells (NPCs)</strong> and <strong>oligodendrocyte precursor cells (OPCs)</strong> —
+                            along with oRG, these are the fetal/developmental populations whose programs GBM hijacks.
+                            Would you like me to dig deeper into any specific therapeutic angle?</p>
 
-                        <b>Bhaduri et al. (2020, Cell Stem Cell)</b> — the paper you're already aware of — identified an
-                        invasive glioblastoma stem cell population similar to outer radial glia (oRG), a fetal cell type
-                        that expands the stem cell niche in normal human cortex.<br><br>
-
-                        <b>Couturier et al. (2020, Nature Communications)</b> found that GBM recapitulates a conserved
-                        neural tri-lineage cancer hierarchy centered around glial progenitor-like cells. They compared
-                        over 50,000 GBM cells to normal human fetal brain cells and showed the tumor hierarchy maps onto
-                        the normal fetal brain developmental lineage.<br><br>
-
-                        <b>Neftel et al. (2019, Cell)</b> showed that GBM malignant cells exist in four cellular states
-                        resembling distinct neural developmental cell types: NPC-like (neural progenitor cell), OPC-like
-                        (oligodendrocyte precursor cell), astrocyte-like, and mesenchymal-like.<br><br>
-
-                        So beyond oRG specifically, the broader answer is that GBM recapitulates the <b>fetal glial
-                            progenitor cell hierarchy</b> — tumor cells transcriptionally resemble the progenitor and
-                        differentiated states of normal fetal brain development (radial glia, OPCs, NPCs, astrocytes).
-                        The glial progenitor-like population sits at the apex of this hierarchy and contains most of the
-                        cycling/stem cells in the tumor.
                     </div>
                     <span class="show-toggle">show more</span>
                 </div>
@@ -571,7 +623,9 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
-                <div class="cell-content">You're likely thinking of glial progenitor cells from the fetal brain.</div>
+                <div class="cell-content">the developmental cell types you're likely remembering are <b>neural
+                        progenitor cells (NPCs)</b> and <b>oligodendrocyte precursor cells (OPCs)</b> — along with oRG,
+                    these are the fetal/developmental populations whose programs GBM hijacks..</div>
             </div>
 
             <div class="notes-row">
@@ -582,176 +636,14 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
         </div>
     </div>
+
     <!-- QUESTION 3 -->
     <div class="question-block">
         <div class="question-label">Question 3</div>
-        <div class="question-text">Which anatomical division in the adult mouse brain is the most heterogenous in terms
-            of
-            cell type composition?</div>
-        <div class="comparison-grid">
-            <div class="col-header kg">Opus KG-mcp</div>
-            <div class="col-header plain">Opus WebSearch</div>
-
-            <div class="cell kg">
-                <div class="cell-section-label">Explanation</div>
-                <div class="cell-content">
-                    <div class="reasoning-body collapsed">
-                        <ul>
-                            <li>It hosts <strong>719 distinct cell type clusters</strong> (second only to Midbrain in
-                                raw count)</li>
-                            <li>It spans <strong>16 Classes</strong> and <strong>8 Neighborhoods</strong> - the highest
-                                diversity at
-                                both coarse levels among all regions</li>
-                        </ul>
-                        <p>While the <strong>Midbrain (MB)</strong> has slightly more clusters (746), its diversity
-                            collapses into
-                            only 5 Neighborhoods compared to the Hypothalamus&#39;s 8, meaning many of those Midbrain
-                            clusters are
-                            variations within fewer broad cell categories.</p>
-                        <p>The Hypothalamus&#39;s exceptional heterogeneity reflects its role as a hub integrating
-                            endocrine,
-                            autonomic, and behavioral functions - requiring a uniquely diverse repertoire of neuronal
-                            and
-                            non-neuronal cell types.</p>
-
-                    </div>
-                    <span class="show-toggle">show more</span>
-                </div>
-            </div>
-            <div class="cell plain">
-                <div class="cell-section-label">Explanation</div>
-                <div class="cell-content">
-                    <div class="reasoning-body collapsed">
-                        <p>Based on large-scale single-cell and spatial transcriptomic atlases (Allen Brain Cell Atlas,
-                            BICCN), the
-                            <strong>cerebral cortex</strong> - and more broadly the
-                            <strong>telencephalon/cerebrum</strong> -
-                            harbors the greatest cell-type heterogeneity in the adult mouse brain. Here&#39;s the
-                            reasoning:
-                        </p>
-                        <h3>Why the cerebral cortex wins in absolute diversity</h3>
-                        <ul>
-                            <li><strong>Glutamatergic neurons</strong>: Dozens of layer-specific (L2/3, L4, L5, L6) and
-                                area-specific
-                                (e.g., visual vs. motor vs. prefrontal) excitatory subtypes, creating a combinatorial
-                                explosion of
-                                identities across the cortical sheet.</li>
-                            <li><strong>GABAergic interneurons</strong>: All major cardinal classes -
-                                <strong>Pvalb</strong>,
-                                <strong>Sst</strong>, <strong>Vip</strong>, <strong>Lamp5</strong>,
-                                <strong>Sncg</strong> - each with
-                                multiple molecularly distinct subtypes, many shared across areas.
-                            </li>
-                            <li><strong>Glia</strong>: Full complement of astrocytes, oligodendrocytes, OPCs, and
-                                microglia, with
-                                regional specialization.</li>
-                            <li><strong>Hippocampal formation</strong> adds further unique types (e.g., CA1/CA3
-                                pyramidal subtypes,
-                                dentate granule cells).</li>
-                        </ul>
-                        <h3>Notable runner-up: The Hypothalamus</h3>
-                        <p>The <strong>hypothalamus</strong> deserves special mention. Per unit volume, it may be the
-                            <em>most
-                                diverse</em> region, with hundreds of neuron types defined by combinatorial expression
-                            of:
-                        </p>
-                        <ul>
-                            <li>Neuropeptides (Avp, Oxt, Crh, Agrp, Pomc, Hcrt, etc.)</li>
-                            <li>Transcription factors (Nr5a1, Sim1, Otp, etc.)</li>
-                            <li>Mixed neurotransmitter identities (glutamatergic, GABAergic, and co-releasing)</li>
-                        </ul>
-                        <h3>Summary</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Division</th>
-                                    <th>Absolute # of cell types</th>
-                                    <th>Diversity per volume</th>
-                                    <th>Key driver</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Cerebral cortex</strong></td>
-                                    <td><strong>Highest</strong></td>
-                                    <td>High</td>
-                                    <td>Layer ├ù area ├ù class combinatorics</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Hypothalamus</strong></td>
-                                    <td>Very high</td>
-                                    <td><strong>Highest</strong></td>
-                                    <td>Neuropeptide/TF combinatorics</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebral nuclei</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Striatal/pallidal specialization</td>
-                                </tr>
-                                <tr>
-                                    <td>Thalamus</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Nucleus-specific types</td>
-                                </tr>
-                                <tr>
-                                    <td>Midbrain/Hindbrain</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>Neuromodulatory diversity</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebellum</td>
-                                    <td>Low</td>
-                                    <td>Low</td>
-                                    <td>Dominated by granule cells</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <b>Bottom line</b>: The <b>cerebral cortex (isocortex)</b> is the most heterogeneous in total
-                        cell-type composition, driven by the intersection of laminar, areal, and interneuron diversity.
-                        If the
-                        question is about <em>neuronal subtype density</em>, the <b>hypothalamus</b> is a strong
-                        contender.
-
-                    </div>
-                    <span class="show-toggle">show more</span>
-                </div>
-            </div>
-
-            <div class="divider-row"></div>
-
-            <div class="cell kg">
-                <div class="cell-section-label">Answer</div>
-                <div class="cell-content">
-                    The <b>Hypothalamus (HY)</b> stands out as the most heterogeneous anatomical division in terms of
-                    cell type
-                    composition.
-                </div>
-            </div>
-            <div class="cell plain">
-                <div class="cell-section-label">Answer</div>
-                <div class="cell-content">Most Heterogeneous Anatomical Division: <b>The Cerebral Cortex</b> (Isocortex
-                    +
-                    Allocortex).
-                </div>
-            </div>
-
-            <div class="notes-row">
-                <div class="notes-label">Observations</div>
-                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Opus-KG cited both
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- QUESTION 4 -->
-    <div class="question-block">
-        <div class="question-label">Question 4</div>
         <div class="question-text">How many electrophysiologically distinct populations (by populations I mean,
             typically
-            exhibiting different neuropeptides) would light up if I used an enhancer targeting Lamp5?
+            exhibiting different neuropeptides) would light up if I used an enhancer targeting Lamp5? So i can assess
+            whether this enhancer is specific enough for a targeted intervention.
         </div>
         <div class="comparison-grid">
             <div class="col-header kg">Opus KG-mcp</div>
@@ -899,67 +791,56 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="cell-section-label">Explanation</div>
                 <div class="cell-content">
                     <div class="reasoning-body collapsed">
-                        <p>... distinguishable by their neuropeptide profiles: <br><br></p>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Neuropeptide Marker</th>
-                                    <th>Cell Type</th>
-                                    <th>Electrophysiological Signature</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td><strong>NPY</strong></td>
-                                    <td>Neurogliaform cells (Lamp5/Ndnf)</td>
-                                    <td>Late-spiking, dense local inhibition</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td><strong>SST</strong></td>
-                                    <td>Lamp5/Lhx6 (MGE-derived)</td>
-                                    <td>Chandelier-like, fast-spiking features</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td><strong>VIP</strong></td>
-                                    <td>Lamp5/Pax6 (single-bouquet-like)</td>
-                                    <td>Irregular/adapting spiking</td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td><strong>NOS1 (nNOS)</strong></td>
-                                    <td>Long-range projecting Lamp5 cells</td>
-                                    <td>Burst-spiking, long-range GABAergic projection</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h3>Key reasoning:</h3>
-                        <ul>
-                            <li><strong>Lamp5</strong> marks a subclass of CGE-derived (and some MGE-derived) GABAergic
-                                interneurons
-                            </li>
-                            <li>The <strong>Lamp5/Lhx6</strong> population is notable because it is MGE-derived (unlike
-                                most Lamp5
-                                cells) and co-expresses <strong>SST</strong> - electrophysiologically it resembles
-                                chandelier cells
-                            </li>
-                            <li>The <strong>neurogliaform</strong> (Lamp5/Ndnf/<strong>NPY+</strong>) population is the
-                                canonical
-                                Lamp5 type with a distinctive late-spiking phenotype and volume transmission of GABA
-                            </li>
-                            <li><strong>nNOS+</strong> Lamp5 cells are a distinct long-range projecting population with
-                                burst-spiking
-                                properties</li>
-                            <li>Some subtypes co-express <strong>VIP</strong> or <strong>CCK</strong>, but VIP marks the
-                                more
-                                electrophysiologically distinct group among these</li>
-                        </ul>
-                        <p>So the : <strong>4</strong> electrophysiologically distinct neuropeptide-defined
-                            populations
-                            would light up with a Lamp5 enhancer.</p>
+                        <p>Here&#39;s the breakdown:</p>
+                        <p><strong>1. Neurogliaform cells (NGFCs) — NPY+/NDNF+</strong>
+                            This is the largest Lamp5+ population. The majority of Lamp5+ cortical interneurons express
+                            NPY, confirming their identity as neurogliaform cells. These are the classic late-spiking
+                            cells that mediate slow, broad &quot;volume transmission&quot; inhibition via combined
+                            GABA-A and spillover GABA-B receptor activation. They reside in L1 but also — importantly —
+                            roughly 60% of this cardinal type may reside in L2–6.</p>
+                        <p><strong>2. Canopy cells — NDNF+/NPY−</strong>
+                            Canopy cells sit closer to the pia surface and have elaborate axons that can send
+                            collaterals into deeper layers. They are NDNF-positive like NGFCs but lack NPY and are
+                            electrophysiologically distinct — they are non-late-spiking and accommodating rather than
+                            exhibiting the classic late-spiking phenotype. The Gouwens et al. Patch-seq study found
+                            continuous variation within Lamp5-MET-1, with one end of the spectrum (high NPY,
+                            late-spiking, round dense axon) resembling neurogliaform cells and the other end (low NPY,
+                            wider axon, fewer late-spiking cells) resembling canopy cells.</p>
+                        <p><strong>3. Single bouquet cells (SBCs) — NDNF−/Chrna7+</strong>
+                            Lamp5+/NDNF− interneurons are Chrna7-expressing single bouquet cells with axons extending to
+                            deeper layers, in contrast to the L1-restricted axons of NGFCs. Transcriptomically, single
+                            bouquet cells map primarily to the Lamp5-Fam19a1-Tmem182 t-type. These are non-late-spiking
+                            and have a descending axonal morphology that is functionally quite different from the
+                            volume-transmitting NGFCs.</p>
+                        <p><strong>4. α7 cells</strong>
+                            Schuman et al. identified at least four molecularly, morphologically, and
+                            electrophysiologically distinct GABAergic cell types in L1, with α7 nicotinic acetylcholine
+                            receptor-expressing cells being a distinct population that had previously been lumped with
+                            other non-NGFC types. These have their own electrophysiological signature and were separated
+                            from both canopy and single bouquet cells.</p>
+                        <p><strong>5. Lamp5/Lhx6 cells — MGE-derived, chandelier-like</strong>
+                            This is perhaps the most problematic inclusion for specificity. The Lamp5-Lhx6 type clusters
+                            with CGE-derived Lamp5 types transcriptomically but expresses MGE transcription factors
+                            Nkx2.1 and Lhx6, and corresponds to a second chandelier cell type (CHC2). In
+                            electrophysiology UMAP space, Lamp5/Lhx6 cells formed a particularly tight, distinct
+                            distribution — they are a clearly separate met-type (Lamp5-MET-2) from all the others above,
+                            which were grouped into the more heterogeneous Lamp5-MET-1. These cells have a fundamentally
+                            different developmental origin (MGE vs CGE) and circuit function (axo-axonic inhibition)
+                            from the rest of the Lamp5 subclass.</p>
+                        <p><strong>Bottom line for your intervention design:</strong> A Lamp5 enhancer is not
+                            particularly specific. You&#39;d be hitting neurons that perform volume transmission
+                            (NGFCs), dendrite-targeting inhibition (canopy cells), interneuron-selective and
+                            descending-axon inhibition (single bouquet cells), cholinergic-gated cells (α7), and
+                            axo-axonic output-targeting cells (Lamp5/Lhx6 chandelier-like) — all in one go. These
+                            populations have different laminar distributions, connectivity motifs, neuromodulatory
+                            sensitivity, and in vivo state-dependent activity profiles.</p>
+                        <p>If you need to narrow things down, an intersectional strategy would help considerably — for
+                            instance, combining the Lamp5 enhancer with an NDNF-dependent element would get you much
+                            closer to just NGFCs plus canopy cells, and adding NPY status on top of that could further
+                            split those two apart. Alternatively, if you&#39;re interested specifically in the
+                            MGE-derived chandelier-like population, an Lhx6-intersectional approach would isolate just
+                            the Lamp5-MET-2 type.</p>
+
                     </div>
                     <span class="show-toggle">show more</span>
                 </div>
@@ -978,12 +859,10 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
-                <div class="cell-content">Based on the transcriptomic taxonomy of the adult mouse brain (Allen Brain
-                    Cell Atlas;
-                    Tasic et al. 2018; Gouwens et al. 2020; Yao et al. 2021, 2023), an enhancer targeting <b>Lamp5</b>
-                    would label
-                    <b>~4 major electrophysiologically distinct populations</b>, distinguishable by their neuropeptide
-                    profiles:
+                <div class="cell-content">A Lamp5
+                    enhancer would light up a fairly heterogeneous collection — at minimum <b>4 to 5</b>
+                    electrophysiologically and molecularly <b>distinct populations</b> (NGFCs, canopy cells, single
+                    bouquet cells, α7 cells, and the Lamp5/Lhx6 cells),
                 </div>
             </div>
 
@@ -995,12 +874,12 @@ Robot noise → MG → AUDp pyramidal neurons
         </div>
     </div>
 
-    <!-- QUESTION 5 -->
+    <!-- QUESTION 4 -->
     <div class="question-block">
-        <div class="question-label">Question 5</div>
+        <div class="question-label">Question 4</div>
         <div class="question-text">Which brain anatomical division in the adult mouse brain is the most chemically
-            diverse
-            in how its neurons communicate through neurotransmitters?</div>
+            diverse in how its neurons communicate through neurotransmitters? I need this to identify where a
+            broad-spectrum neuromodulatory drug is most likely to have off-target effects.</div>
         <div class="comparison-grid">
             <div class="col-header kg">Opus KG-mcp</div>
             <div class="col-header plain">Opus WebSearch</div>
@@ -1066,109 +945,45 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="cell-section-label">Explanation</div>
                 <div class="cell-content">
                     <div class="reasoning-body collapsed">
-                        <p>Here&#39;s the systematic reasoning:</p>
-                        <h3>Why the hypothalamus wins</h3>
-                        <p><strong>1. Neurotransmitter multiplexing</strong>
-                            Hypothalamic neurons routinely co-release multiple classical neurotransmitters - many nuclei
-                            contain
-                            neurons that are simultaneously glutamatergic and GABAergic, or switch transmitter identity
-                            in a
-                            state-dependent manner. This degree of co-transmission is unmatched elsewhere.</p>
-                        <p><strong>2. Neuropeptide diversity</strong>
-                            The hypothalamus expresses the largest repertoire of neuropeptides of any brain region,
-                            including:</p>
-                        <ul>
-                            <li><strong>Feeding/metabolism</strong>: Agrp, Npy, Pomc, Cart, Hcrt/Orexin, Mch, Ghrh</li>
-                            <li><strong>Stress/HPA axis</strong>: Crh, Avp, Oxt</li>
-                            <li><strong>Reproduction</strong>: GnRH, Kisspeptin (Kiss1), Tac2</li>
-                            <li><strong>Thermoregulation/sleep</strong>: Galanin (Gal), Pacap, Vip, Prok2</li>
-                            <li><strong>Social behavior</strong>: Oxytocin, Vasopressin</li>
-                        </ul>
-                        <p>Many single neurons express <strong>3ÔÇô5+ neuropeptides simultaneously</strong>, creating a
-                            combinatorial chemical code far richer than classical neurotransmitter identity alone.</p>
-                        <p><strong>3. Monoamine and other small-molecule signals</strong>
-                            The hypothalamus contains or receives dense input from <strong>histaminergic</strong>
-                            (tuberomammillary
-                            nucleus - the sole source of brain histamine), <strong>dopaminergic</strong>
-                            (tuberoinfundibular,
-                            A11ÔÇôA14 groups), and <strong>serotonin-sensitive</strong> populations.</p>
-                        <p><strong>4. Neurohormonal signaling</strong>
-                            Uniquely, hypothalamic neurons also function as <strong>neuroendocrine cells</strong>,
-                            releasing peptides
-                            directly into the portal vasculature and bloodstream - a chemical communication modality
-                            absent from
-                            other divisions.</p>
-                        <h3>Comparison across divisions</h3>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Division</th>
-                                    <th>Classical NTs</th>
-                                    <th>Neuropeptide diversity</th>
-                                    <th>Co-transmission</th>
-                                    <th>Neurohormonal</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Hypothalamus</strong></td>
-                                    <td><strong>Glu + GABA + mixed</strong></td>
-                                    <td><strong>Highest (~50+ peptides)</strong></td>
-                                    <td><strong>Extensive</strong></td>
-                                    <td><strong>Yes</strong></td>
-                                </tr>
-                                <tr>
-                                    <td>Midbrain/Hindbrain</td>
-                                    <td>Glu, GABA, DA, 5-HT, NE</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebral cortex</td>
-                                    <td>Glu, GABA</td>
-                                    <td>LowÔÇômoderate</td>
-                                    <td>Limited</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Thalamus</td>
-                                    <td>Glu, GABA</td>
-                                    <td>Low</td>
-                                    <td>Minimal</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebellum</td>
-                                    <td>Glu, GABA</td>
-                                    <td>Very low</td>
-                                    <td>Minimal</td>
-                                    <td>No</td>
-                                </tr>
-                                <tr>
-                                    <td>Cerebral nuclei</td>
-                                    <td>Glu, GABA, ACh, DA</td>
-                                    <td>Moderate</td>
-                                    <td>Moderate</td>
-                                    <td>No</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h3>Key distinction from the previous question</h3>
-                        <p>The cerebral cortex wins on <strong>cell-type heterogeneity</strong> (driven by laminar/areal
-                            combinatorics), but its neurons communicate through a relatively narrow chemical palette
-                            (primarily
-                            glutamate and GABA). The hypothalamus, by contrast, achieves its diversity through
-                            <strong>chemical
-                                identity</strong> - the sheer number of distinct signaling molecules deployed per neuron
-                            and per
-                            nucleus is unparalleled.
+                        <p>Great question — this touches on neurochemical cartography, which has been significantly
+                            advanced by recent single-cell transcriptomic studies. Let me search for the latest data on
+                            this.The answer is the <strong>hypothalamus</strong> — and the evidence from recent
+                            large-scale transcriptomic atlases is quite compelling.</p>
+                        <p><strong>Why the hypothalamus stands out for neurotransmitter diversity:</strong></p>
+                        <p>The hypothalamus contains the highest diversity of neurons in the brain, with many of these
+                            neurons capable of co-releasing neurotransmitters and neuropeptides in a use-dependent
+                            manner. This was established by single-cell RNA sequencing that distinguished 62 neuronal
+                            subtypes producing glutamatergic, dopaminergic, or GABAergic markers for synaptic
+                            neurotransmission, with the ability to engage in task-dependent neurotransmitter switching.
                         </p>
-                        <p><strong>Bottom line</strong>: The <strong>hypothalamus</strong> is the most chemically
-                            diverse division,
-                            uniquely combining classical neurotransmitters, extensive co-transmission, the brain&#39;s
-                            richest
-                            neuropeptide repertoire, and neuroendocrine signaling into the vasculature.</p>
+                        <p>The 2023 whole-brain atlas studies (Allen Brain Cell Atlas and companion Slide-seq work)
+                            reinforced this, finding that cell type diversity was remarkably high in the midbrain,
+                            hindbrain, and hypothalamus, with most clusters requiring at least three discrete gene
+                            expression markers to uniquely define them. Critically, neuropeptide signaling has been
+                            particularly strongly associated with the hypothalamus, where many neuropeptides were
+                            originally biochemically discovered.</p>
+                        <p><strong>What makes it so neurochemically rich:</strong></p>
+                        <p>The hypothalamus hosts neurons using virtually every major classical neurotransmitter system
+                            — glutamate, GABA, and dopamine as fast/modulatory transmitters — plus it is the exclusive
+                            home of histaminergic neurons. Histaminergic neurons are found exclusively in the
+                            tuberomammillary nucleus of the hypothalamus, and all co-release GABA. On top of that, it
+                            expresses an extraordinary number of neuropeptides: oxytocin, vasopressin, CRH, TRH, GnRH,
+                            orexin/hypocretin, MCH, somatostatin, GHRH, NPY, AgRP, POMC/α-MSH, galanin, neurotensin, and
+                            many more. The co-transmission patterns are also remarkably heterogeneous — nearly all
+                            subclasses with a dominant modulatory neurotransmitter contain clusters transmitting
+                            glutamate and/or GABA only, as well as various patterns of co-transmission, indicating a
+                            high degree of heterogeneity in neurotransmitter release and co-release.</p>
+                        <p><strong>Implications for your drug off-target analysis:</strong></p>
+                        <p>This makes the hypothalamus the region where a broad-spectrum neuromodulatory drug would
+                            encounter the widest variety of neurotransmitter systems simultaneously. A drug targeting,
+                            say, monoamine receptors would not only affect dopaminergic neurons
+                            (arcuate/tuberoinfundibular) and histaminergic neurons (tuberomammillary), but could also
+                            interact with the dense neuropeptidergic signaling that modulates feeding, circadian rhythm,
+                            stress response, reproduction, and autonomic function. The sheer density of co-transmission
+                            — where single neurons release multiple signaling molecules — means that perturbing one
+                            system almost inevitably cascades into others within the hypothalamus, making off-target
+                            prediction especially challenging there.</p>
+
                     </div>
                     <span class="show-toggle">show more</span>
                 </div>
@@ -1186,9 +1001,9 @@ Robot noise → MG → AUDp pyramidal neurons
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
                 <div class="cell-content">
-                    The <b>Hypothalamus</b> is the most chemically diverse brain division in terms of neurotransmitter
-                    and
-                    neuromodulatory signaling.
+                    The answer is the <b>hypothalamus</b> — and the evidence from recent large-scale transcriptomic
+                    atlases is
+                    quite compelling.
                 </div>
             </div>
 
@@ -1198,13 +1013,13 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
         </div>
     </div>
-    <!-- QUESTION 6 -->
+    <!-- QUESTION 5 -->
     <div class="question-block">
-        <div class="question-label">Question 6</div>
+        <div class="question-label">Question 5</div>
         <div class="question-text">
-            Which single neuropeptide is expressed most frequently across all rare-transmitter neuron clusters, and
-            which
-            brain regions contain it?
+            I want to modulate a neuropeptide system and need to map where I'd be acting to anticipate behavioral
+            consequences — so which single neuropeptide is expressed most frequently across all rare-transmitter neuron
+            clusters, and which brain regions contain it?
         </div>
         <div class="comparison-grid">
             <div class="col-header kg">Opus KG-mcp</div>
@@ -1288,77 +1103,51 @@ Robot noise → MG → AUDp pyramidal neurons
                 <div class="cell-section-label">Explanation</div>
                 <div class="cell-content">
                     <div class="reasoning-body collapsed">
-                        <h3>Why Galanin?</h3>
-                        <p>Rare-transmitter neurons - those using transmitters other than glutamate or GABA
-                            (cholinergic,
-                            serotonergic, dopaminergic, noradrenergic, histaminergic) - are scattered across the brain.
-                            <em>Gal</em>
-                            uniquely co-occurs with multiple rare-transmitter systems:
-                        </p>
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Rare-transmitter system</th>
-                                    <th>Key marker</th>
-                                    <th><em>Gal</em> co-expression</th>
-                                    <th>Brain region</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><strong>Noradrenergic</strong></td>
-                                    <td><em>Dbh</em> / <em>Th</em></td>
-                                    <td>Strong</td>
-                                    <td>Locus coeruleus (pons)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Cholinergic</strong></td>
-                                    <td><em>Chat</em></td>
-                                    <td>Strong</td>
-                                    <td>Basal forebrain (medial septum, diagonal band)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Histaminergic</strong></td>
-                                    <td><em>Hdc</em></td>
-                                    <td>Present</td>
-                                    <td>Tuberomammillary nucleus (hypothalamus)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Serotonergic</strong></td>
-                                    <td><em>Tph2</em> / <em>Slc6a4</em></td>
-                                    <td>Subset</td>
-                                    <td>Dorsal raphe (midbrain)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Hypothalamic neuroendocrine</strong></td>
-                                    <td>Various</td>
-                                    <td>Widespread</td>
-                                    <td>Arcuate, MPOA, lateral hypothalamus</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <h3>Brain regions containing Galanin-expressing rare-transmitter neurons</h3>
-                        <ol>
-                            <li><strong>Hypothalamus</strong> - tuberomammillary nucleus (histaminergic),
-                                arcuate/preoptic area
-                                (neuroendocrine)</li>
-                            <li><strong>Pons</strong> - locus coeruleus (noradrenergic)</li>
-                            <li><strong>Basal forebrain</strong> - medial septum &amp; diagonal band of Broca
-                                (cholinergic)</li>
-                            <li><strong>Midbrain</strong> - dorsal raphe nucleus (serotonergic subsets)</li>
-                        </ol>
-                        <h3>Biological rationale</h3>
-                        <p>Galanin acts as a modulatory co-transmitter that fine-tunes the release and postsynaptic
-                            effects of the
-                            primary transmitter. Its recurring presence across rare-transmitter systems reflects a
-                            conserved role in
-                            <strong>gain control and homeostatic regulation</strong> - particularly in circuits
-                            governing arousal,
-                            stress, feeding, and autonomic function, which are precisely the circuits where
-                            rare-transmitter neurons
-                            concentrate.
-                        </p>
-
+                        <p>This is a great question that maps directly onto the Allen Brain Cell Atlas whole-mouse-brain
+                            dataset from Yao et al. (2023, <em>Nature</em>). Let me walk through what we know.</p>
+                        <p><strong>What counts as &quot;rare-transmitter&quot;</strong></p>
+                        <p>The atlas classified mature neurons into eight partially overlapping groups based on
+                            neurotransmitter transporter expression: glutamatergic, GABAergic, serotonergic,
+                            dopaminergic, cholinergic, glycinergic, noradrenergic, and histaminergic. Glutamatergic and
+                            GABAergic neurons made up about 63% and 36% of total neurons respectively, while
+                            serotonergic, dopaminergic, cholinergic, glycinergic, noradrenergic, and histaminergic
+                            neurons collectively accounted for only roughly 2% of all neurons. Those six modulatory
+                            types are your &quot;rare-transmitter&quot; populations.</p>
+                        <p><strong>The most broadly expressed neuropeptide: Cck (cholecystokinin)</strong></p>
+                        <p>The atlas measured cell-type specificity using the Tau score and found that some
+                            neuropeptides are expressed widely across many clusters at high levels — with Cck, Pnoc,
+                            Adcyap1, Penk, Sst, and Tac1 heading the list — while others are restricted to just one or a
+                            few clusters. Of this group, <strong>Cck</strong> consistently ranked as the single most
+                            broadly expressed neuropeptide gene, appearing in the largest number of transcriptomic
+                            clusters brain-wide. Because it has the lowest cell-type specificity (lowest Tau score), it
+                            is also the neuropeptide most frequently detected across the rare-transmitter neuron classes
+                            — it is prominently co-expressed in dopaminergic, serotonergic, and cholinergic clusters
+                            among others.</p>
+                        <p><strong>Brain regions where you&#39;d be acting on CCK-expressing neurons</strong></p>
+                        <p>CCK expression is remarkably widespread, but the key regions to anticipate include:</p>
+                        <p>The <strong>cerebral cortex</strong> (especially interneuron populations throughout
+                            isocortex), the <strong>hippocampal formation</strong> (where CCK marks a prominent basket
+                            cell interneuron subtype), the <strong>amygdala</strong>, the <strong>hypothalamus</strong>
+                            (multiple nuclei), the <strong>ventral tegmental area and substantia nigra</strong> (where
+                            CCK is classically co-expressed with dopamine), the <strong>midbrain raphe nuclei</strong>
+                            (co-expressed with serotonin), and parts of the <strong>hindbrain</strong>. The companion
+                            MERFISH atlas showed that many neuropeptide genes have spatially heterogeneous
+                            distributions, with some being enriched in specific nuclei across the hypothalamus,
+                            striatum, and other regions.</p>
+                        <p><strong>Behavioral consequences to anticipate</strong></p>
+                        <p>Because CCK is distributed so broadly and cuts across so many rare-transmitter systems
+                            simultaneously, modulating it would produce a complex behavioral phenotype spanning reward
+                            and motivation (via VTA dopaminergic co-expression), mood and anxiety (via serotonergic and
+                            amygdala circuits), memory and spatial processing (via hippocampal interneurons), feeding
+                            behavior and satiety (via hypothalamic circuits), and cortical network excitability (via
+                            interneuron modulation throughout neocortex). This is why CCK receptor pharmacology has been
+                            notoriously difficult to translate — receptor subtype (CCK-A vs CCK-B), regional specificity
+                            of delivery, and which transmitter system you&#39;re intersecting all matter enormously for
+                            the behavioral readout.</p>
+                        <p>If you want to narrow your pharmacological target, I&#39;d suggest working from the receptor
+                            side (CCKAR vs CCKBR have quite different distributions) or using intersectional genetic
+                            strategies to restrict manipulation to CCK within a single rare-transmitter class. Happy to
+                            dig deeper into any of these angles.</p>
 
                     </div>
                     <span class="show-toggle">show more</span>
@@ -1379,11 +1168,7 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
             <div class="cell plain">
                 <div class="cell-section-label">Answer</div>
-                <div class="cell-content">
-                    Answer: <b>Galanin</b> (Gal)
-                    <b>Galanin</b> is the single neuropeptide expressed most frequently across rare-transmitter neuron
-                    clusters in
-                    the adult mouse brain.
+                <div class="cell-content">The most broadly expressed neuropeptide: <b>Cck (cholecystokinin)</b>
                 </div>
             </div>
 
@@ -1393,6 +1178,114 @@ Robot noise → MG → AUDp pyramidal neurons
             </div>
         </div>
     </div>
+    <!-- QUESTION 6 -->
+    <div class="question-block">
+        <div class="question-label">Question 6</div>
+        <div class="question-text">I want to know where to focus a single-cell atlas effort for maximum discovery yield.
+            Which anatomical division in the adult mouse brain is the most heterogenous in terms
+            of cell type composition?
+        </div>
+        <div class="comparison-grid">
+            <div class="col-header kg">Opus KG-mcp</div>
+            <div class="col-header plain">Opus WebSearch</div>
+
+            <div class="cell kg">
+                <div class="cell-section-label">Explanation</div>
+                <div class="cell-content">
+                    <div class="reasoning-body collapsed">
+                        <ul>
+                            <li>It hosts <strong>719 distinct cell type clusters</strong> (second only to Midbrain in
+                                raw count)</li>
+                            <li>It spans <strong>16 Classes</strong> and <strong>8 Neighborhoods</strong> - the highest
+                                diversity at
+                                both coarse levels among all regions</li>
+                        </ul>
+                        <p>While the <strong>Midbrain (MB)</strong> has slightly more clusters (746), its diversity
+                            collapses into
+                            only 5 Neighborhoods compared to the Hypothalamus&#39;s 8, meaning many of those Midbrain
+                            clusters are
+                            variations within fewer broad cell categories.</p>
+                        <p>The Hypothalamus&#39;s exceptional heterogeneity reflects its role as a hub integrating
+                            endocrine,
+                            autonomic, and behavioral functions - requiring a uniquely diverse repertoire of neuronal
+                            and
+                            non-neuronal cell types.</p>
+
+                    </div>
+                    <span class="show-toggle">show more</span>
+                </div>
+            </div>
+            <div class="cell plain">
+                <div class="cell-section-label">Explanation</div>
+                <div class="cell-content">
+                    <div class="reasoning-body collapsed">
+                        <p>Here&#39;s what the data show:</p>
+                        <p>The hindbrain, midbrain, and hypothalamus contained substantially greater numbers of neuronal
+                            cell types than the other brain regions. This wasn&#39;t simply because these areas have
+                            more anatomical sub-nuclei. The local complexity of neuronal cell-type composition was also
+                            substantially higher in the midbrain, hindbrain, and hypothalamus, indicating that these
+                            regions were not simply composed of more subregions with distinct cell compositions, but
+                            also had complex local neighborhoods with higher cellular diversity.</p>
+                        <p>An independent study using snRNA-seq paired with Slide-seq confirmed this: in total, they
+                            identified roughly 5,000 clusters of cells, mostly neuronal, with the diversity distributed
+                            primarily in subcortical areas — most especially in the midbrain, pons, medulla, and
+                            hypothalamus.</p>
+                        <p><strong>But there&#39;s a critical nuance about the <em>quality</em> of that
+                                heterogeneity.</strong> The Yao et al. Allen Institute atlas revealed a striking
+                            dorsal–ventral dichotomy. The dorsal part of the brain contains relatively fewer yet highly
+                            divergent neuronal types, whereas the ventral part contains more numerous neuronal types
+                            that are more closely related to each other. More specifically, in regions with larger
+                            numbers of clusters — hypothalamus, midbrain, and hindbrain — the clusters are more similar
+                            to each other, suggesting lower transcriptomic differences and less hierarchical
+                            organization. By contrast, regions like the cerebellum, thalamus, and pallium have fewer
+                            clusters but with much greater pairwise transcriptomic divergence.</p>
+                        <p><strong>What this means for your atlas effort:</strong></p>
+                        <p>If your goal is to <strong>discover the largest number of previously uncharacterized cell
+                                types</strong>, the hypothalamus is probably your highest-yield target. It has
+                            extraordinary neuronal diversity, complex neuropeptide co-expression patterns, irregularly
+                            shaped and partially overlapping spatial distributions of cell types, and historically has
+                            been under-profiled relative to cortex. Many hypothalamic cell populations require at least
+                            three discrete marker genes to uniquely identify them, meaning shallow profiling will miss
+                            them.</p>
+                        <p>However, if your goal is to understand <strong>maximally distinct cell programs</strong>
+                            (e.g., for building genetic access tools or understanding fundamentally different circuit
+                            logic), the dorsal structures — particularly thalamus and cerebellum — offer fewer types
+                            that are more transcriptomically separable and hierarchically organized, which can be
+                            advantageous for certain downstream applications.</p>
+                        <p>For pure discovery yield, though: hypothalamus first, then midbrain/hindbrain.</p>
+                    </div>
+                    <span class="show-toggle">show more</span>
+                </div>
+            </div>
+
+            <div class="divider-row"></div>
+
+            <div class="cell kg">
+                <div class="cell-section-label">Answer</div>
+                <div class="cell-content">
+                    The <b>Hypothalamus (HY)</b> stands out as the most heterogeneous anatomical division in terms of
+                    cell type
+                    composition, with the <strong> Midbrain </strong> being the second option.
+                </div>
+            </div>
+            <div class="cell plain">
+                <div class="cell-section-label">Answer</div>
+                <div class="cell-content">
+                    <p><strong>The hypothalamus, midbrain, and hindbrain </strong> harbor the greatest number of
+                        transcriptomically distinct neuronal cell types. Of these, the
+                        <strong>hypothalamus</strong> is often singled out as the standout for discovery yield.
+                    </p>
+                </div>
+            </div>
+
+            <div class="notes-row">
+                <div class="notes-label">Observations</div>
+                <div class="notes-content">Ground truth: Hypothalamus (and midbrain as runner up). Notably, we tested Opus with only it's prior knowledge and no tools enabled, resulting in a wrong answer (Cerebral Cortex). Both the KG and Web steered the model towards a more specific and grounded answer.
+                </div>
+            </div>
+        </div>
+    </div>
+
 
     <script>
         (function () {
